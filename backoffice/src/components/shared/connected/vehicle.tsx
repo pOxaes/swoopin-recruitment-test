@@ -25,6 +25,17 @@ type DriverProps = {
 const Vehicle = observer(({ id, name, vehicle, location, online }
     : DriverProps) => {
 
+
+    // @action.bound
+    const onConnectClick = async () => {
+        const { setOnline } = state.vehicles
+        try {
+            await setOnline(id)
+        } catch (error) {
+          // TODO: handle error
+        }
+    }
+    
     return (
         <div className={block}>
 
@@ -58,7 +69,13 @@ const Vehicle = observer(({ id, name, vehicle, location, online }
 
             { /* Buttons ([Online|Offline]) */ }
             <div className={cx('__group', '__buttons')}>
-                { /* FIXME */ }
+                <button
+                    type="button"
+                    className={cx('__button', { '__button--hidden': online })}
+                    onClick={onConnectClick}
+                >
+                    Connecter
+                </button>
             </div>
 
         </div>

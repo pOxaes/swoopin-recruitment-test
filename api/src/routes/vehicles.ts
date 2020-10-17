@@ -32,6 +32,27 @@ const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
             })))
         },
     })
+
+    server.route({
+        method: 'POST',
+        url: '/vehicles/online/:id',
+        // TODO: make auth preHandler work
+        // preHandler: server.auth([server.authenticateAccount]),
+        async handler(req: any, res: any) {
+            const updatedVehicle = VehicleService.updateVehicleById(req.params.id)
+            
+            if (!updatedVehicle) {
+                res.statusCode = 500
+                res.send({
+                    statusCode: 500,
+                    error: 'Internal Server Error',
+                })
+            } else {
+                res.statusCode = 200
+                res.send({})
+            }
+        },
+    })
     next()
 }
 

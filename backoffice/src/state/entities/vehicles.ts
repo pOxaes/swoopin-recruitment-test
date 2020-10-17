@@ -73,6 +73,18 @@ export default class StateVehicles {
         this.updateList(res?.data)
     }
 
+    @action.bound async setOnline(id: string) {
+        const res = await this.api?.post(`/vehicles/online/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${this.session.token}`
+            }
+        })
+        const matchingVehicle = this.list.find(vehicle => vehicle.id === id)
+        if (matchingVehicle) {
+            matchingVehicle.online = true
+        }
+    }
+
     @action.bound updateList(vehicles: any[]) {
         this.list = vehicles
             .slice()

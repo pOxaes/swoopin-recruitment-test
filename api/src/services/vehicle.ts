@@ -14,6 +14,15 @@ function VehicleService() {
 
         vehicles: [] as any[],
 
+        updateVehicleById(id: string) {
+            const vehicle = this.vehicles.find(vehicle => vehicle.id === id)
+            
+            if (!vehicle) return false
+
+            vehicle.online = true
+            return vehicle
+        },
+
         configure(vehicles: any) {
             // Initialize vehicles
             this.initializeVehicles(vehicles)

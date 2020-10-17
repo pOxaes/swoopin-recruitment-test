@@ -44,6 +44,16 @@ const PageDrivers = observer(({ location } : { location: any }) => {
 
     const formatLocation = ([lat, long]: [number, number]) => ([long, lat])
 
+    const focusMapVehicle = (vehicle: any) => {
+        mapRef.map?.flyTo({
+            center: [vehicle.location[1], vehicle.location[0]],
+            essential: true,
+            zoom: 13,
+            speed: 0.5,
+            curve: 1,
+        })
+    }
+
     return (
         <section id="page-map" className={block}>
             <SEO title='Carte' />
@@ -136,7 +146,11 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                             // @ts-ignore
                            state.vehicles.all.length > 0 ? (
                                 // @ts-ignore
-                                state.vehicles.all.map((vehicle: any) => <VehicleCard key={vehicle.id} {...vehicle} />)
+                                state.vehicles.all.map((vehicle: any) => <VehicleCard
+                                    key={vehicle.id}
+                                    {...vehicle}
+                                    onClick={focusMapVehicle.bind(null, vehicle)}
+                                />)
                             ) : (
                                 <div className={cx('__empty')}>
                                     Aucun véhicule connecté

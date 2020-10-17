@@ -7,6 +7,12 @@
     background: #FAD4C4;
     border-radius: 6px;
     padding: 12px;
+    cursor: pointer;
+    transition: box-shadow .15s ease-out;
+
+    &:hover {
+        box-shadow: 2px 2px 5px 0px rgba(14,51,143,0.2);
+    }
 
     &--online {
         border-color: #B4CEC9;

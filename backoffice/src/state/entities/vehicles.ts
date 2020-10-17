@@ -65,7 +65,12 @@ export default class StateVehicles {
     }
 
     @action.bound async updateVehicles(session: any) {
-        // FIXME
+        const res = await this.api?.get('/vehicles', {
+            headers: {
+                'Authorization': `Bearer ${session.token}`
+            }
+        })
+        this.updateList(res?.data)
     }
 
     @action.bound updateList(vehicles: any[]) {

@@ -73,7 +73,7 @@ const PageVehicles = observer(({ location } : { location: any }) => {
                     // @ts-ignore
                     state.vehicles[selected].length > 0 ? (
                         // @ts-ignore
-                        state.vehicles[selected].map((vehicle: any) => <Vehicle key={vehicle._id} {...vehicle} />)
+                        state.vehicles[selected].map((vehicle: any) => <Vehicle key={vehicle.id} {...vehicle} />)
                     ) : (
                         <div className={cx('__empty')}>
                             Aucun véhicule connecté

@@ -1,0 +1,23 @@
+@import "~style/variables";
+
+.vehicle-card {
+    margin: 5px;
+    // TODO: use colors var here
+    border: 1px solid #EDC9BB;
+    background: #FAD4C4;
+    border-radius: 6px;
+    padding: 12px;
+
+    &--online {
+        border-color: #B4CEC9;
+        background-color: #BED9D4;
+    }
+
+    &__vehicle-name {
+        font-weight: 800;
+    }
+
+    &__vehicle-description {
+        font-weight: 600;
+    }
+}

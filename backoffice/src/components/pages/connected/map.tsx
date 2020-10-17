@@ -11,6 +11,8 @@ import { useLayoutConfig, useCallback } from 'hooks'
 import SEO from 'components/layout/seo'
 import { IconMap } from 'components/shared/icons'
 
+import { VehicleCard } from 'components/shared/connected'
+
 import './map.scss'
 
 const block = 'page-map'
@@ -111,7 +113,17 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                 <div className={cx('__sidebar')}>
                     <h2 className={cx('__title')}>Véhicules</h2>
                     <div className={cx('__list')}>
-                        {/* FIXME */ }
+                        {
+                            // @ts-ignore
+                           state.vehicles.all.length > 0 ? (
+                                // @ts-ignore
+                                state.vehicles.all.map((vehicle: any) => <VehicleCard key={vehicle.id} {...vehicle} />)
+                            ) : (
+                                <div className={cx('__empty')}>
+                                    Aucun véhicule connecté
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
 

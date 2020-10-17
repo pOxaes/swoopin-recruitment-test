@@ -67,6 +67,28 @@
     }
   }
 
+  &__speed {
+    &--hidden {
+      display: none;
+    }
+
+    &-theme {
+      font-weight: 500;
+      font-size: 0.9rem
+    }
+  }
+
+  &__temperature {
+    &--hidden {
+      display: none;
+    }
+
+    &-theme {
+      font-weight: 500;
+      font-size: 0.9rem
+    }
+  }
+
   &__location {
     &--hidden {
       display: none;

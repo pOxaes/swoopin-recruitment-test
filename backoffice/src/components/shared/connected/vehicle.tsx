@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import moment from 'moment'
 
 import { classNamesPrefix } from 'utils/react'
 
@@ -23,10 +24,20 @@ type DriverProps = {
     speed: number,
     temperature: number,
     plate: string,
+    updatedAt: string,
 }
 
-const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperature, plate }
-    : DriverProps) => {
+const Vehicle = observer(({ 
+    id,
+    name,
+    vehicle,
+    location,
+    online,
+    speed,
+    temperature,
+    plate,
+    updatedAt,
+}: DriverProps) => {
 
 
     // @action.bound
@@ -48,6 +59,8 @@ const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperat
           // TODO: handle error
         }
     }
+
+    const formattedDate = moment(updatedAt).format('DD/MM/YYYY-HH:mm:ss')
     
     return (
         <div className={block}>
@@ -64,6 +77,9 @@ const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperat
                     </div>
                     <div className={cx('__vehicle-description')}>
                         {vehicle} ({plate})
+                    </div>
+                    <div className={cx('__vehicle-update')}>
+                        {formattedDate}
                     </div>
                 </div>
             </div>

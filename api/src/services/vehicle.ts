@@ -19,7 +19,10 @@ function VehicleService() {
             
             if (!vehicle) return false
             
-            Object.assign(vehicle, patch)
+            Object.assign(vehicle, {
+                ...patch,
+                updatedAt: moment().toISOString(),
+            })
             return vehicle
         },
 
@@ -45,6 +48,7 @@ function VehicleService() {
                     location: location.geometry.coordinates,
                     line,
                     distance: 0,
+                    updatedAt: moment().toISOString(),
                 }
             })
         },
@@ -81,6 +85,7 @@ function VehicleService() {
                 } else {
                     vehicle.speed = 0
                 }
+                vehicle.updatedAt = moment().toISOString()
             })
         },
 

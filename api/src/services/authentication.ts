@@ -12,15 +12,14 @@ function AuthenticationService() {
         },
 
         async authenticateAccount(args: {req: any, res: any, done: (error?: Error) => void }) {
-
             try {
                 // Decode JSON
                 const decoded = await args.req.jwtVerify()
 
-                if (decoded?.payload?.userId) {
+                if (decoded?.userId) {
 
                     // Verify account is present
-                    if ((!this.account) || (decoded.payload.userId === this.account!.id)) {
+                    if ((!this.account) || (decoded.userId === this.account!.id)) {
                         const user = this.account
                         return Object.assign(args.req, { user })
                     }

@@ -74,7 +74,7 @@ export default class StateVehicles {
     }
 
     @action.bound async setOnline(id: string) {
-        const res = await this.api?.post(`/vehicles/online/${id}`, {
+        const res = await this.api?.post(`/vehicles/online/${id}`, undefined, {
             headers: {
                 'Authorization': `Bearer ${this.session.token}`
             }
@@ -86,7 +86,7 @@ export default class StateVehicles {
     }
 
     @action.bound async setOffline(id: string) {
-        const res = await this.api?.post(`/vehicles/offline/${id}`, {
+        const res = await this.api?.post(`/vehicles/offline/${id}`, undefined, {
             headers: {
                 'Authorization': `Bearer ${this.session.token}`
             }

@@ -17,8 +17,7 @@ const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'GET',
         url: '/vehicles',
-        // TODO: make auth preHandler work
-        // preHandler: server.auth([server.authenticateAccount]),
+        preHandler: server.auth([server.authenticateAccount]),
         async handler(req: any, res: any) {
             const { vehicles } = VehicleService
             res.statusCode = 200
@@ -36,8 +35,7 @@ const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'POST',
         url: '/vehicles/online/:id',
-        // TODO: make auth preHandler work
-        // preHandler: server.auth([server.authenticateAccount]),
+        preHandler: server.auth([server.authenticateAccount]),
         async handler(req: any, res: any) {
             const updatedVehicle = VehicleService.updateVehicleById(req.params.id, { online: true })
             
@@ -57,8 +55,7 @@ const VehiclesRoute = async (server : any, opts : any, next: () => void) => {
     server.route({
         method: 'POST',
         url: '/vehicles/offline/:id',
-        // TODO: make auth preHandler work
-        // preHandler: server.auth([server.authenticateAccount]),
+        preHandler: server.auth([server.authenticateAccount]),
         async handler(req: any, res: any) {
             const updatedVehicle = VehicleService.updateVehicleById(req.params.id, { online: false })
             

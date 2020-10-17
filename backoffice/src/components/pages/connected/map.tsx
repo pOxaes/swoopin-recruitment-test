@@ -42,6 +42,8 @@ const PageDrivers = observer(({ location } : { location: any }) => {
         setPopup({ ...popup, show: true })
     }, [])
 
+    const formatLocation = ([lat, long]: [number, number]) => ([long, lat])
+
     return (
         <section id="page-map" className={block}>
             <SEO title='Carte' />
@@ -71,7 +73,16 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                             'icon-anchor': 'bottom',
                         }}
                     >
-                        {/* FIXME */ }
+                        {
+                            state.vehicles.online.map((vehicle: any) => <Feature
+                                key={vehicle.id}
+                                coordinates={formatLocation(vehicle.location)}
+                                onMouseEnter={() => mapRef.map.getCanvas().style.cursor = 'pointer'}
+                                onMouseLeave={() => mapRef.map.getCanvas().style.cursor = ''}
+                                onClick={(e) => onMapVehicleClick(e, vehicle.id)}
+                            />)
+                        }
+
                     </Layer>
 
                     { /* Offline vehicles layer */ }
@@ -84,7 +95,15 @@ const PageDrivers = observer(({ location } : { location: any }) => {
                             'icon-anchor': 'bottom',
                         }}
                     >
-                        {/* FIXME */ }
+                        {
+                            state.vehicles.offline.map((vehicle: any) => <Feature
+                                key={vehicle.id}
+                                coordinates={formatLocation(vehicle.location)}
+                                onMouseEnter={() => mapRef.map.getCanvas().style.cursor = 'pointer'}
+                                onMouseLeave={() => mapRef.map.getCanvas().style.cursor = ''}
+                                onClick={(e) => onMapVehicleClick(e, vehicle.id)}
+                            />)
+                        }
                     </Layer>
 
                     { /* Popup */ }

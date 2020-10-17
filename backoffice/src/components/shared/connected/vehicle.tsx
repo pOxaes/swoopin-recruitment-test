@@ -22,9 +22,10 @@ type DriverProps = {
     online: boolean,
     speed: number,
     temperature: number,
+    plate: string,
 }
 
-const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperature }
+const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperature, plate }
     : DriverProps) => {
 
 
@@ -62,7 +63,7 @@ const Vehicle = observer(({ id, name, vehicle, location, online, speed, temperat
                         {name}
                     </div>
                     <div className={cx('__vehicle-description')}>
-                        {vehicle}
+                        {vehicle} ({plate})
                     </div>
                 </div>
             </div>

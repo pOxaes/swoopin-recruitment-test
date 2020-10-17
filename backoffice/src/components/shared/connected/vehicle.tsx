@@ -35,6 +35,16 @@ const Vehicle = observer(({ id, name, vehicle, location, online }
           // TODO: handle error
         }
     }
+
+    // @action.bound
+    const onDisconnectClick = async () => {
+        const { setOffline } = state.vehicles
+        try {
+            await setOffline(id)
+        } catch (error) {
+          // TODO: handle error
+        }
+    }
     
     return (
         <div className={block}>
@@ -69,6 +79,13 @@ const Vehicle = observer(({ id, name, vehicle, location, online }
 
             { /* Buttons ([Online|Offline]) */ }
             <div className={cx('__group', '__buttons')}>
+                <button
+                    type="button"
+                    className={cx('__button', { '__button--hidden': !online })}
+                    onClick={onDisconnectClick}
+                >
+                    Déconnecter
+                </button>
                 <button
                     type="button"
                     className={cx('__button', { '__button--hidden': online })}

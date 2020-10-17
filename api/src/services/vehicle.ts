@@ -14,12 +14,12 @@ function VehicleService() {
 
         vehicles: [] as any[],
 
-        updateVehicleById(id: string) {
+        updateVehicleById(id: string, patch: object) {
             const vehicle = this.vehicles.find(vehicle => vehicle.id === id)
             
             if (!vehicle) return false
-
-            vehicle.online = true
+            
+            Object.assign(vehicle, patch)
             return vehicle
         },
 

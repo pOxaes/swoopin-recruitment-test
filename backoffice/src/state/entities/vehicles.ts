@@ -85,6 +85,18 @@ export default class StateVehicles {
         }
     }
 
+    @action.bound async setOffline(id: string) {
+        const res = await this.api?.post(`/vehicles/offline/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${this.session.token}`
+            }
+        })
+        const matchingVehicle = this.list.find(vehicle => vehicle.id === id)
+        if (matchingVehicle) {
+            matchingVehicle.online = false
+        }
+    }
+
     @action.bound updateList(vehicles: any[]) {
         this.list = vehicles
             .slice()
